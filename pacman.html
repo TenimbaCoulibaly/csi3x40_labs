@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacMan Game</title>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 2em;
+        }
+        </style>
+</head>
+
+<body>
+    
+    <div id="gameBoard"></div>
+    <script>
+        //////Question 1, 2 et 3.
+        function createGame(n) {
+            // Initialise le jeu
+            let gameBoard = new Array(n).fill(".");
+        
+            let pacManPos, ghostPos, fruitPos;
+            do {
+                pacManPos = Math.floor(Math.random() * n);
+                ghostPos = Math.floor(Math.random() * n);
+                fruitPos = Math.floor(Math.random() * n);
+            } while (pacManPos === ghostPos || pacManPos === fruitPos || ghostPos === fruitPos);
+        
+            // Place PacMan, ghost et fruit sur le plateau de jeu
+            gameBoard[pacManPos] = "C";
+            gameBoard[ghostPos] = "^";
+            gameBoard[fruitPos] = "@";
+        
+            document.getElementById("gameBoard").innerHTML = gameBoard.join(" ");
+        }
+
+        function moveLeft(game) {
+            let pacManPos = game.indexOf("C");
+             if (pacManPos > 0) {
+                  game[pacManPos] = ".";
+                   game[pacManPos - 1] = "C";
+                 }
+                 return game;
+        }
+
+        function moveRight(game) {
+             let pacManPos = game.indexOf("C");
+              if (pacManPos < game.length - 1) {
+                  game[pacManPos] = ".";
+                  game[pacManPos + 1] = "C";
+                }
+                return game;
+        }
+
+        // Appel cde la fonction pour creer et diposer le jeu sur le plateau
+        createGame(10);
+    </script>
+</body>
+
+</html>
